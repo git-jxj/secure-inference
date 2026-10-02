@@ -64,6 +64,7 @@ go test ./test/e2e -run TestFullSystemDeployment -v
 ```bash
 cd guides/minikube-llm-d-cpu
 ./setup.sh
+cd ../..
 ```
 
 ### 2. Apply Test Policies
@@ -74,10 +75,12 @@ kubectl apply -f config/samples/
 
 ### 3. Generate Tokens
 
+The setup script builds `llmd-admin` and initializes its signing key. Reuse
+that key to generate tokens from the repository root:
+
 ```bash
-./bin/llmd-auth init
-export ALICE_TOKEN=$(./bin/llmd-auth create --name alice)
-export CHARLIE_TOKEN=$(./bin/llmd-auth create --name charlie)
+export ALICE_TOKEN=$(./bin/llmd-admin create --name alice)
+export CHARLIE_TOKEN=$(./bin/llmd-admin create --name charlie)
 ```
 
 ### 4. Test Authentication

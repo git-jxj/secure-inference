@@ -62,11 +62,13 @@ kubectl apply -f config/samples/models.yaml
 
 After applying these samples, you can test access control by:
 
-1. Generate JWT tokens for alice and charlie:
+1. From the repository root, generate JWT tokens for alice and charlie using
+   the `llmd-admin` CLI built by `make build-cli` and the signing key created
+   during deployment by `llmd-admin init`:
 
    ```bash
-   ./bin/amd64/llmd-auth create --name alice
-   ./bin/amd64/llmd-auth create --name charlie
+   ./bin/llmd-admin create --name alice
+   ./bin/llmd-admin create --name charlie
    ```
 
 2. Test API calls with the generated tokens:
